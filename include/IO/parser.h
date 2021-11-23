@@ -8,17 +8,18 @@
 #include <fstream>
 #include <map>
 
+#include "problem_data.h"
+
 namespace PDE::IO {
     class parser {
         private: 
             std::fstream file;
-            std::map<std::string, std::pair<double,bool>> data;
+            PDE::IO::problem_data data;
         public:
             parser(const char *filename);
             ~parser();
             void parse();
-            bool check(std::ostream &out);
-            const std::map<std::string, std::pair<double,bool>> &get();
+            PDE::IO::problem_data &get();
     };
 }
 #endif

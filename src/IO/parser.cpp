@@ -5,7 +5,7 @@ PDE::IO::parser::parser(const char *filename) {
     if (! file.is_open()) {
         throw "file not found exception";
     } else {
-        data["CHECK"] = std::make_pair<double,bool>(0,false);
+        //placeholder
     }
 }
 
@@ -14,6 +14,8 @@ PDE::IO::parser::~parser() {
 }
 
 void PDE::IO::parser::parse() {
+    std::string raw_msh;
+
     while(file) {
         std::string line;
         std::getline(file,line);
@@ -24,23 +26,41 @@ void PDE::IO::parser::parse() {
         } else {
             std::vector<std::string> split_lines;
             boost::algorithm::split(split_lines,line,boost::is_any_of("="));
-            data[split_lines[0]] = std::make_pair<double, bool>(std::atof(split_lines[1].c_str()),true);
+            
+            if (split_lines[0] == "TFINAL") {
+                data.t_final = std::atof(split_lines[1].c_str());
+            } else if (split_lines[0] == "NT") {
+                data.nt = std::atoi(split_lines[1].c_str());
+            } else if (split_lines[0] == "METHOD") {
+                data.method = split_lines[1];
+            } else if (split_lines[0] == "SCHEME") {
+                data.scheme = split_lines[1];
+            } else if (split_lines[0] == "NX") {
+                data.nx = std::atoi(split_lines[1].c_str());
+            } else if (split_lines[0] == "MESH") {
+                raw_msh = split_lines[1];
+            }
         }
+    }
+
+    std::vector<std::string> split_raw_mesh;
+    boost::algorithm::split(split_raw_mesh,raw_msh,boost::is_any_of(";"));
+
+    data.mesh = std::vector<double>(data.nx);
+    data.u0 = std::vector<double>(data.nx);
+
+    for (int i=0; i<data.nx; i++) {
+        std::string point = split_raw_mesh[i];
+        boost::algorithm::ireplace_all(point,"(","");
+        boost::algorithm::ireplace_all(point,")","");
+
+        std::vector<std::string> point_data;
+        boost::algorithm::split(point_data,point,boost::is_any_of(","));
+        data.mesh[i] = std::atof(point_data[0].c_str());
+        data.u0[i] = std::atof(point_data[1].c_str());
     }
 }
 
-bool PDE::IO::parser::check(std::ostream &out) {
-    bool parsed = true; 
-
-    for (auto v: data) {
-        if ( !v.second.second) {
-            parsed = false;
-            out << "KEY " << v.first << " NOT FOUND IN CONFIG FILE!" << std::endl;
-        }
-    }
-    return parsed;
-}
-
-const std::map<std::string, std::pair<double,bool>> &PDE::IO::parser::get() {
+PDE::IO::problem_data &PDE::IO::parser::get() {
     return data;
 }

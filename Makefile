@@ -3,6 +3,10 @@
 # 'make clean'  removes all .o and executable files
 #
 
+ARMADIR = /usr/include/
+ARMALIBDIR = /externals/armadillo-10.7.1/
+VTU11DIR = externals/vtu11
+
 # define the Cpp compiler to use
 CXX = g++
 
@@ -37,15 +41,15 @@ MD	:= mkdir
 else
 MAIN	:= main
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
-INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
-LIBDIRS		:= $(shell find $(LIB) -type d)
+INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d) -I${ARMADIR} -I${VTU11DIR}
+LIBDIRS		:= $(shell find $(LIB) -type d) -L${ARMALIBDIR} -larmadillo
 FIXPATH = $1
 RM = rm -f
 MD	:= mkdir -p
 endif
 
 # define any directories containing header files other than /usr/include
-INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
+INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%)) -Iexternals/armadillo-10.7.1
 
 # define the C libs
 LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%))
