@@ -6,7 +6,13 @@ double PDE::SOLVER::flux_upwind(double ul, double ur) {
 }
 
 double PDE::SOLVER::flux_godunov(double ul, double ur) {
-    double F; 
-    F = 0.5*ul*ul + ul*(ur - 0.5*(ul+ur)); 
+    double F;
+    if (ul > 0 && 0.5*(ul+ur)>0) {
+        F = 0.5*ul*ul;
+    } else if (ur < 0 && 0.5*(ul+ur)<0){
+        F = 0.5*ur*ur;
+    } else {
+        F = 0.0;
+    }
     return F; 
 }

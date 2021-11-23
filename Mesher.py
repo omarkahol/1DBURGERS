@@ -14,12 +14,11 @@ file.write("\n")
 # Variables
 
 Nt = 1000
-FinalTime = 3
+FinalTime = 1.0
 Method = "EXPLICIT"
 Scheme = "UPWIND"
 Nx = 500
-h = 1/(Nx+1)
-k = 1/(Nt+1)
+h = 2.0/(Nx+1)
 
 
 file.write("TFINAL = {}\n".format(FinalTime))
@@ -40,7 +39,7 @@ file.write("\n")
 file.write("MESH = ")
 
 
-IniSol = lambda xx: 1+np.sin(np.pi*xx)
+IniSol = lambda xx: -np.sin(np.pi*xx)
 
 x = np.linspace(-1, 1, Nx)
 meshstr = ""

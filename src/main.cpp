@@ -11,8 +11,9 @@ int main(int argc, char *argv[])
 	std::cout << "Data parsed!" << std::endl;
 
 	arma::vec time = arma::linspace(0,data.t_final,data.nt);
-	double h = 1.0/(data.nx+1);
-	double k = 1.0/(data.nt+1);
+	double L = data.mesh[data.nx-1]-data.mesh[0];
+	double h = L/(data.nx+1);
+	double k = data.t_final/(data.nt+1);
 
 	std::vector<std::vector<double>> solution = std::vector<std::vector<double>>(data.nt);
 	
@@ -29,17 +30,17 @@ int main(int argc, char *argv[])
 
 				if (j==0) { //periodic BC
 
-					FR = 0.5*solution[n-1][j]*solution[n-1][j];
-					FL = 0.5*solution[n-1][data.nx-1]*solution[n-1][data.nx-1];
+					FL = PDE::SOLVER::flux_godunov(solution[n-1][data.nx-1], solution[n-1][j]);
+					FR = PDE::SOLVER::flux_godunov(solution[n-1][j], solution[n-1][j+1]);
 
 				} else if (j==data.nx-1) { //periodic BC
 
-					FR = 0.5*solution[n-1][j]*solution[n-1][j];
-					FL = 0.5*solution[n-1][j-1]*solution[n-1][j-1];
+					FL = PDE::SOLVER::flux_godunov(solution[n-1][j-1], solution[n-1][j]);
+					FR = PDE::SOLVER::flux_godunov(solution[n-1][j], solution[n-1][0]);
 
 				} else { //internal domain
-					FR = 0.5*solution[n-1][j]*solution[n-1][j];
-					FL = 0.5*solution[n-1][j-1]*solution[n-1][j-1];
+					FL = PDE::SOLVER::flux_godunov(solution[n-1][j-1], solution[n-1][j]);
+					FR = PDE::SOLVER::flux_godunov(solution[n-1][j], solution[n-1][j+1]);
 				}
 
 				solution[n][j] = solution[n-1][j] - (k/h)*(FR-FL);
