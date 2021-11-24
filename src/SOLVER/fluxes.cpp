@@ -1,4 +1,4 @@
-#include "metodi.h"
+#include "fluxes.h"
 
 // ul è u_j ; ur è u_j+1
 double PDE::SOLVER::flux_upwind(double ul, double ur) { 

@@ -33,12 +33,16 @@ void PDE::IO::parser::parse() {
                 data.nt = std::atoi(split_lines[1].c_str());
             } else if (split_lines[0] == "METHOD") {
                 data.method = split_lines[1];
-            } else if (split_lines[0] == "SCHEME") {
-                data.scheme = split_lines[1];
+            } else if (split_lines[0] == "FLUX") {
+                data.flux = split_lines[1];
             } else if (split_lines[0] == "NX") {
-                data.nx = std::atoi(split_lines[1].c_str());
+                data.nx = std::atoi(split_lines[1].c_str())-1;
             } else if (split_lines[0] == "MESH") {
                 raw_msh = split_lines[1];
+            } else if (split_lines[0] == "LW_CORRECTION") {
+                data.lw_correction = split_lines[1];
+            } else if (split_lines[0] == "SLOPE_LIMITER") {
+                data.slope_limiter = split_lines[1];
             }
         }
     }

@@ -10,9 +10,11 @@ namespace PDE::IO {
         int nt;
         double t_final;
         std::string method;
-        std::string scheme;
+        std::string flux;
+        std::string lw_correction;
         std::vector<double> mesh;
         std::vector<double> u0;
+        std::string slope_limiter;
     };
 }
 
