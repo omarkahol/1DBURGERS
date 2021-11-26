@@ -1,8 +1,13 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
- 
+mkdir -p output
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/main.cpp  -o src/main.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/explicit_solver.cpp  -o src/SOLVER/explicit_solver.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/fluxes.cpp  -o src/SOLVER/fluxes.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/lw_correction.cpp  -o src/SOLVER/lw_correction.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/IO/parser.cpp  -o src/IO/parser.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/IO/writer.cpp  -o src/IO/writer.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -o output/main src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o  -Llib -L/externals/armadillo-10.7.1/ -larmadillo
 echo Executing 'all' complete!
- 
 make: Leaving directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
  

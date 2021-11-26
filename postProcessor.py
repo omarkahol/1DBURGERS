@@ -4,17 +4,18 @@ import matplotlib.pyplot as plt
 from numpy import genfromtxt
 from matplotlib.animation import FuncAnimation
 
-#   --------------- CASES ---------------
-#       'EXPLICIT_GODUNOV.csv'
-#   'EXPLICIT_GODUNOV_2_ORD_SUPERBEE.csv'
-#   'EXPLICIT_GODUNOV_2_ORD_VAN_LEER.csv'
+#   -------------------- CASES --------------------
 #
-#       'EXPLICIT_UPWIND.csv'
-#   'EXPLICIT_UPWIND_2_ORD_SUPERBEE.csv
-#   'EXPLICIT_UPWIND_2_ORD_VAN_LEER.csv'
+#       './results/EXPLICIT_GODUNOV.csv'
+#   './results/EXPLICIT_GODUNOV_2_ORD_SUPERBEE.csv'
+#   './results/EXPLICIT_GODUNOV_2_ORD_VAN_LEER.csv'
+#
+#       './results/EXPLICIT_UPWIND.csv'
+#   './results/EXPLICIT_UPWIND_2_ORD_SUPERBEE.csv
+#   './results/EXPLICIT_UPWIND_2_ORD_VAN_LEER.csv'
 
 
-data = genfromtxt('EXPLICIT_GODUNOV.csv',delimiter=',')
+data = genfromtxt('./results/EXPLICIT_GODUNOV.csv',delimiter=',')
 
 fig = plt.figure()
 ax = fig.add_subplot(111,xlim=(-1,1),ylim=(-3,3))

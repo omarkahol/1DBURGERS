@@ -14,15 +14,15 @@ file.write("\n")
 
 FinalTime = 1.3
 Method = "EXPLICIT" #can select either EXPLICT or IMPLICIT
-Flux = "UPWIND" #can select either UPWIND or GODUNOV
-LWCorrection = "TRUE" #activate or deactivate 2nd order correction sceme
+Flux = "GODUNOV" #can select either UPWIND or GODUNOV
+LWCorrection = "FALSE" #activate or deactivate 2nd order correction sceme
 SlopeLimiter = "SUPERBEE" #choose MINMOD, VAN_LEER, SUPERBEE, MC, NONE 
 Nx = 500
 Length = 2
 CFL_limit = 0.6
 u0 = lambda x: -1.0 if x > -0.5 and x<0 else 1.0 if x>0 and x<0.5 else 0 #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
 
-filename = Method + "_" + Flux 
+filename = "./results/" + Method + "_" + Flux 
 if (LWCorrection == "TRUE"):
     filename += "_2_ORD_" + SlopeLimiter + ".csv"
 else:

@@ -5,9 +5,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Fri Nov 26 13:49:22 2021
+# Make data base, printed on Fri Nov 26 15:05:56 2021
 
 # Variables
 
@@ -28,7 +27,7 @@ SNAP_INSTANCE_KEY =
 # makefile (from 'Makefile', line 47)
 MD := mkdir -p
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7065a872-1d6e-4478-ba74-9ad0497da551.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d395b90a-fcf2-476c-ab1b-14980a71f914.sock
 # environment
 LC_NAME = it_IT.UTF-8
 # environment
@@ -122,7 +121,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 6148
+VSCODE_PID = 16044
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -218,7 +217,6 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # makefile (from 'Makefile', line 7)
 ARMALIBDIR = /externals/armadillo-10.7.1/
 # makefile (from 'Makefile', line 60)
- 
 OBJECTS := src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
 # 'override' directive
 GNUMAKEFLAGS := 
@@ -283,6 +281,7 @@ TERM = xterm-256color
 # environment
 SNAP_NAME = code
 # environment
+ 
 GSETTINGS_SCHEMA_DIR = /snap/code/82/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
@@ -336,9 +335,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # src/IO (device 66308, inode 7346722): 6 files, no impossibilities.
 # src/SOLVER (device 66308, inode 7346725): 8 files, no impossibilities.
 # src (device 66308, inode 7346721): 6 files, no impossibilities.
-# . (device 66308, inode 7340578): 17 files, no impossibilities.
+# . (device 66308, inode 7340578): 23 files, no impossibilities.
 
-# 37 files, no impossibilities in 4 directories.
+# 43 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -349,28 +348,28 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 src/IO/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:25.004073635
+#  Last modified 2021-11-26 14:39:30.760179394
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/SOLVER/explicit_solver.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:23.116073571
+#  Last modified 2021-11-26 14:39:29.304179345
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/SOLVER/fluxes.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:23.136073572
+#  Last modified 2021-11-26 13:58:02.480095204
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/IO/writer.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:25.328073646
+#  Last modified 2021-11-26 14:39:31.044179404
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,7 +383,7 @@ Makefile:
 # Not a target:
 src/SOLVER/lw_correction.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:23.340073579
+#  Last modified 2021-11-26 13:58:02.66009521
 #  File has been updated.
 #  Successfully updated.
 
@@ -408,7 +407,7 @@ clean:
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:47:22.644073556
+#  Last modified 2021-11-26 14:39:28.816179328
 #  File has been updated.
 #  Successfully updated.
 
@@ -420,7 +419,7 @@ src/main.o:
 
 output:
 #  Implicit rule search has not been done.
-#  Last modified 2021-11-26 13:49:05.536077037
+#  Last modified 2021-11-26 14:56:43.672058094
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 74):
@@ -491,12 +490,12 @@ main: src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 49 / storage = 519 B / avg = 10 B
-# current buf: size = 8162 B / used = 519 B / count = 49 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 55 / storage = 702 B / avg = 12 B
+# current buf: size = 8162 B / used = 702 B / count = 55 / avg = 12 B
 
-# strcache performance: lookups = 74 / hit rate = 33%
+# strcache performance: lookups = 80 / hit rate = 31%
 # hash-table stats:
-# Load=49/8192=1%, Rehash=0, Collisions=0/74=0%
-# Finished Make data base on Fri Nov 26 13:49:22 2021
+# Load=55/8192=1%, Rehash=0, Collisions=0/80=0%
+# Finished Make data base on Fri Nov 26 15:05:56 2021
 
  
