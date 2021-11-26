@@ -40,18 +40,18 @@ MD	:= mkdir
 else
 MAIN	:= main
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
-INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d) -I${ARMADIR}
-LIBDIRS		:= $(shell find $(LIB) -type d) -L${ARMALIBDIR}
+INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d) 
+LIBDIRS		:= $(shell find $(LIB) -type d) 
 FIXPATH = $1
 RM = rm -f
 MD	:= mkdir -p
 endif
 
 # define any directories containing header files other than /usr/include
-INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%)) -Iexternals/armadillo-10.7.1
+INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%)) -I${ARMADIR}
 
 # define the C libs
-LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%))
+LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%)) -L${ARMALIBDIR} -larmadillo
 
 # define the C source files
 SOURCES		:= $(wildcard $(patsubst %,%/*.cpp, $(SOURCEDIRS)))

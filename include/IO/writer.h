@@ -4,8 +4,9 @@
 #include <fstream>
 #include <vector>
 
+
 namespace PDE::IO {
-    void writer(const char *fileName, const std::vector<std::vector<double>> &solution);
+    void writer(std::string fileName, const std::vector<double> *solution, std::ios_base::openmode value);
 }
 
 #endif // WRITER_H

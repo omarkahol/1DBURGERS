@@ -29,8 +29,8 @@ void PDE::IO::parser::parse() {
             
             if (split_lines[0] == "TFINAL") {
                 data.t_final = std::atof(split_lines[1].c_str());
-            } else if (split_lines[0] == "NT") {
-                data.nt = std::atoi(split_lines[1].c_str());
+            } else if (split_lines[0] == "CFL") {
+                data.CFL = std::atof(split_lines[1].c_str());
             } else if (split_lines[0] == "METHOD") {
                 data.method = split_lines[1];
             } else if (split_lines[0] == "FLUX") {
@@ -43,7 +43,10 @@ void PDE::IO::parser::parse() {
                 data.lw_correction = split_lines[1];
             } else if (split_lines[0] == "SLOPE_LIMITER") {
                 data.slope_limiter = split_lines[1];
+            } else if (split_lines[0] == "FILENAME") {
+                data.Solution_filename = split_lines[1];
             }
+            
         }
     }
 

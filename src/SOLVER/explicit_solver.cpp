@@ -1,13 +1,30 @@
 #include "explicit_solver.h"
 
 double PDE::SOLVER::CFL(double u, double h, double k) {
-    return std::abs(u)*k/h;
+    return u*k/h;
 }
 
-void PDE::SOLVER::explicit_solver(std::vector<std::vector<double>> &solution, const PDE::IO::problem_data &data) {
+double PDE::SOLVER::maximum(std::vector<double> *vec){
+    double max = 0.;
+    for (int i = 0; i < vec -> size(); i++){
+        max = std::max(max,std::abs(vec->at(i)));
+    }
+    return max;
+}
+
+double PDE::SOLVER::Twonorm(std::vector<double> *Vect){
+    double n = 0.;
+    for (int i = 0; i < Vect->size(); i++){
+        n += Vect->at(i)*Vect->at(i);
+    }
+    return sqrt(n);
+}
+
+
+void PDE::SOLVER::explicit_solver(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data) {
     
     // CREATE A FUNCTION POINTER THAT POINTS TO THE CORRECT FLUX FUNCTION
-    double (*flux)(double,double);
+    double (*flux)(double , double );
     if (data.flux == "UPWIND") {
         flux = &PDE::SOLVER::flux_upwind;
     } else if (data.flux=="GODUNOV") {
@@ -25,20 +42,33 @@ void PDE::SOLVER::explicit_solver(std::vector<std::vector<double>> &solution, co
     }
 
     //INITIALIZE THE SOLUTION WITH THE INITIAL CONDITION
-    solution[0] = data.u0;
+    solutionPrev = &(data.u0);
+    double NORM = PDE::SOLVER::Twonorm(solutionPrev);
+
+    PDE::IO::writer(data.Solution_filename, solutionPrev, std::ios::out);
+
+
+    double max_sol = maximum(solutionPrev);
 
     //COMPUTE SOME ITERATION FIXED DATA
 	double h = data.mesh[1]-data.mesh[0];
-	double k = data.t_final/(data.nt+1);
+	double k = data.CFL*h/max_sol;
     double FL, FR;
-    double CL, CR, CFL;
+    double CL, CR, CFL_local;
     int jPrevPrev,jPrev, jNext;
+    double t = 0.0;
+    int counter = 0;
 
 
-    for (int n=1; n<data.nt; n++) {
+    std::cout << std::setw(15) << std::setfill(' ') << "Iteration" << std::setw(18) << std::setfill(' ') << "Time" << std::setw(30) << std::setfill(' ') << "Time increment" << std::setw(22) << std::setfill(' ') << "|| u ||" << std::endl;
+    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
 
-		solution[n] = std::vector<double>(data.nx); //ALLOCATE MEMORY
 
+
+    for (t; t < data.t_final; t += k) {
+
+        max_sol = 0.0;
 		for (int j=0; j<data.nx; j++) { //ITERATE IN THE CENTERAL DOMAIN
 
             jPrev = (j==0)?data.nx-1:j-1; // PREVIOUS CELL INDEX
@@ -52,23 +82,41 @@ void PDE::SOLVER::explicit_solver(std::vector<std::vector<double>> &solution, co
             }
 
 
-			FL = flux(solution[n-1][jPrev], solution[n-1][j]); //LEFT FLUX
-			FR = flux(solution[n-1][j], solution[n-1][jNext]); //RIGHT FLUX
-			solution[n][j] = solution[n-1][j] - (k/h)*(FR-FL);
+			FL = flux( solutionPrev->at(jPrev), solutionPrev->at(j) ); //LEFT FLUX
+			FR = flux(solutionPrev->at(j), solutionPrev->at(jNext)); //RIGHT FLUX
+			solution->at(j) = solutionPrev->at(j) - (k/h)*(FR-FL);
 
             //COMPUTE THE 2ND ORDER CORRECTION WITH SLOPE LIMITER
             if (data.lw_correction == "TRUE") {
-                CFL = PDE::SOLVER::CFL(solution[n-1][jPrev],h,k);
-                CL = PDE::SOLVER::correction(solution[n-1][jPrev], solution[n-1][j], CFL);
-                CL = CL * limiter(solution[n-1][jPrevPrev],solution[n-1][jPrev],solution[n-1][j]);
+                CFL_local = PDE::SOLVER::CFL(solutionPrev->at(jPrev),h,k);
+                CL = PDE::SOLVER::correction(solutionPrev->at(jPrev), solutionPrev->at(j), CFL_local);
+                CL = CL * limiter(solutionPrev->at(jPrevPrev),solutionPrev->at(jPrev),solutionPrev->at(j));
                 
-                CFL = PDE::SOLVER::CFL(solution[n-1][j],h,k);
-                CR = PDE::SOLVER::correction(solution[n-1][j],solution[n-1][jNext], CFL);
-                CR = CR * limiter(solution[n-1][jPrev],solution[n-1][j],solution[n-1][jNext]);
+                CFL_local = PDE::SOLVER::CFL(solutionPrev->at(j),h,k);
+                CR = PDE::SOLVER::correction(solutionPrev->at(j),solutionPrev->at(jNext), CFL_local);
+                CR = CR * limiter(solutionPrev->at(jPrev),solutionPrev->at(j),solutionPrev->at(jNext));
 
-                solution[n][j] = solution[n][j] - (k/h)*(CR-CL);
+                solution->at(j) = solution->at(j) - (k/h)*(CR-CL);
             }
+
+            max_sol = std::max(max_sol, std::abs(solution->at(j)));
+
+
 		}
+
+        double NORM = PDE::SOLVER::Twonorm(solution);
+
+        std::cout << std::setw(10) << std::setfill(' ') << counter << std::setw(25) << std::setfill(' ') << t << std::setw(25) << std::setfill(' ') << k << std::setw(25) << std::setfill(' ') << NORM << std::endl;
+
+        k = data.CFL*h/max_sol;
+
+        PDE::IO::writer(data.Solution_filename, solution, std::ios::app);
+
+
+        solutionPrev = solution;
+
+        counter++;
+
 	}
 
 }

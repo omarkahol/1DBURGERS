@@ -4,11 +4,12 @@ double PDE::SOLVER::wave(double ul, double ur) {
     return ur-ul;
 }
 double PDE::SOLVER::correction(double ul, double ur, double CFL) {
-    return 0.5*std::abs(ul)*(1-CFL)*PDE::SOLVER::wave(ul,ur);
+    return 0.5*ul*(1-CFL)*PDE::SOLVER::wave(ul,ur);
 }
 
 double PDE::SOLVER::van_leer(double uPrev, double u, double uNext) {
-    double theta = (u-uPrev)/(uNext-u);
+
+    double theta = ((uNext - u) < 1e-10) ? 1 :(u-uPrev)/(uNext-u);
     return (theta + std::abs(theta))/(1+std::abs(theta));
 }
 

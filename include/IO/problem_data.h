@@ -7,7 +7,7 @@
 namespace PDE::IO {
     struct problem_data {
         int nx;
-        int nt;
+        double CFL;
         double t_final;
         std::string method;
         std::string flux;
@@ -15,6 +15,7 @@ namespace PDE::IO {
         std::vector<double> mesh;
         std::vector<double> u0;
         std::string slope_limiter;
+        std::string Solution_filename;
     };
 }
 
