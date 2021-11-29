@@ -9,13 +9,12 @@ namespace PDE::IO {
         int nx;
         double CFL;
         double t_final;
-        std::string method;
-        std::string flux;
-        std::string lw_correction;
+        void (*method)(std::vector<double>*, std::vector<double>*, PDE::IO::problem_data&);
+        double (*riemann_solver)(double,double);
+        bool MUSCL;
         std::vector<double> mesh;
         std::vector<double> u0;
-        std::string slope_limiter;
-        std::string Solution_filename;
+        std::string solution_filename;
     };
 }
 

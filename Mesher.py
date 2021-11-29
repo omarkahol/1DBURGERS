@@ -1,6 +1,6 @@
 from scipy.integrate import quad
 import numpy as np
-
+import math as mt
 
 file = open("config.1db", 'w')
 
@@ -12,21 +12,16 @@ file.write("\n")
 
 # Variables
 
-FinalTime = 1.3
-Method = "EXPLICIT" #can select either EXPLICT or IMPLICIT
-Flux = "GODUNOV" #can select either UPWIND or GODUNOV
-LWCorrection = "FALSE" #activate or deactivate 2nd order correction sceme
-SlopeLimiter = "SUPERBEE" #choose MINMOD, VAN_LEER, SUPERBEE, MC, NONE 
+FinalTime = 3.0
+Method = "RK_2" #can select either EXPLICT, RK_2, IMPLICIT
+RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE, ROE_FIX
+MUSCL = "TRUE" #activate or deactivate 2nd order MUSCL scheme
 Nx = 500
 Length = 2
-CFL_limit = 0.6
-u0 = lambda x: -1.0 if x > -0.5 and x<0 else 1.0 if x>0 and x<0.5 else 0 #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
+CFL_limit = 0.8
+u0 = lambda x: -1.0*np.sign(x) if abs(x) < 0.5 else 0.0#ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
 
-filename = "./results/" + Method + "_" + Flux 
-if (LWCorrection == "TRUE"):
-    filename += "_2_ORD_" + SlopeLimiter + ".csv"
-else:
-    filename += ".csv"
+filename = "solution.csv"
 
 file.write("TFINAL = {}\n".format(FinalTime))
 file.write("\n")
@@ -34,11 +29,9 @@ file.write("CFL = {}\n".format(CFL_limit))
 file.write("\n")
 file.write("METHOD = {}\n".format(Method))
 file.write("\n")
-file.write("FLUX = {}\n".format(Flux))
+file.write("RIEMANN_SOLVER = {}\n".format(RiemannSolver))
 file.write("\n")
-file.write("LW_CORRECTION = {}\n".format(LWCorrection))
-file.write("\n")
-file.write("SLOPE_LIMITER = {}\n".format(SlopeLimiter))
+file.write("MUSCL = {}\n".format(MUSCL))
 file.write("\n")
 file.write("FILENAME = {}\n".format(filename))
 file.write("\n")
@@ -63,7 +56,7 @@ for i in range(len(x)-1):
         sol = 0.0
     meshstr = meshstr +"("+str(meshPoints[i])+","+str(sol)+")"
 
-    if (i != len(x) - 1):
+    if (i != len(x) - 2):
         meshstr = meshstr + "; "
 
 

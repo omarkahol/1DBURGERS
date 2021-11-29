@@ -15,7 +15,7 @@ from matplotlib.animation import FuncAnimation
 #   './results/EXPLICIT_UPWIND_2_ORD_VAN_LEER.csv'
 
 
-data = genfromtxt('./results/EXPLICIT_GODUNOV.csv',delimiter=',')
+data = genfromtxt('solution.csv',delimiter=',')
 
 fig = plt.figure()
 ax = fig.add_subplot(111,xlim=(-1,1),ylim=(-3,3))
@@ -28,7 +28,9 @@ print(nTime, nPoints)
 xAxis = np.linspace(-1,1,nPoints)
 
 def animate(i):
+    global line
     line.set_data(xAxis,data[i,:])
+    return line,
 
-ani = FuncAnimation(fig, animate, frames=len(data[:,0]),interval=1)
+ani = FuncAnimation(fig, animate, frames=len(data[:,0]),interval=1,blit=True)
 plt.show()

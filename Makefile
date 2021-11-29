@@ -48,10 +48,10 @@ MD	:= mkdir -p
 endif
 
 # define any directories containing header files other than /usr/include
-INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%)) -I${ARMADIR}
+INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%)) 
 
 # define the C libs
-LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%)) -L${ARMALIBDIR} -larmadillo
+LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%)) 
 
 # define the C source files
 SOURCES		:= $(wildcard $(patsubst %,%/*.cpp, $(SOURCEDIRS)))

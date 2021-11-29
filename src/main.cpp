@@ -1,6 +1,6 @@
 #include "parser.h"
 #include "armadillo"
-#include "explicit_solver.h"
+#include "solver.h"
 
 
 int main(int argc, char *argv[])
@@ -15,10 +15,8 @@ int main(int argc, char *argv[])
 	std::vector<double> solutionPrev = std::vector<double> (data.nx);	//ALLOCATE MEMORY FOR PREVIOUS TIME-STEP SOLUTION
 	std::vector<double> solution = std::vector<double> (data.nx);		//ALLOCATE MEMORY FOR CURRENT TIME-STEP SOLUTION
 
-	PDE::SOLVER::explicit_solver(&solution, &solutionPrev, data);
-
-	
-
+	PDE::IO::title();
+	data.method(&solution, &solutionPrev, data);
 	return 0;
 
 

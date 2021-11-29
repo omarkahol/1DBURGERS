@@ -9,6 +9,9 @@
 #include <map>
 
 #include "problem_data.h"
+#include "limiters.h"
+#include "solver.h"
+#include "riemann.h"
 
 namespace PDE::IO {
     class parser {
