@@ -12,14 +12,14 @@ file.write("\n")
 
 # Variables
 
-FinalTime = 3.0
+FinalTime = 2.0
 Method = "RK_2" #can select either EXPLICT, RK_2, IMPLICIT
 RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE, ROE_FIX
 MUSCL = "TRUE" #activate or deactivate 2nd order MUSCL scheme
 Nx = 500
 Length = 2
-CFL_limit = 0.8
-u0 = lambda x: -1.0*np.sign(x) if abs(x) < 0.5 else 0.0#ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
+CFL_limit = 0.1
+u0 = lambda x: 1.0 if abs(x) < 0.5 else 0.0#ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
 
 filename = "solution.csv"
 

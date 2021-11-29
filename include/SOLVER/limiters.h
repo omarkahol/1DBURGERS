@@ -4,7 +4,7 @@
 #include <cmath>
 
 namespace PDE::SOLVER {
-    double minmod(double a, double b);
+    double vanAlabada(double, double, double);
 }
 
 
