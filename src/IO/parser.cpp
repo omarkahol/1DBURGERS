@@ -60,6 +60,7 @@ void PDE::IO::parser::parse() {
             } else if (split_lines[0] == "MESH") {
                 raw_msh = split_lines[1];
             } else if (split_lines[0] == "MUSCL") {
+                
                 data.MUSCL = (split_lines[1] == "TRUE")?true:false;
             } else if (split_lines[0] == "FILENAME") {
                 data.solution_filename = split_lines[1];

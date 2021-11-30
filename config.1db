@@ -3,15 +3,15 @@
 % ----------------------------- CFD GROUP PROJECT----------------------------- 
 % ----------------------------------------------------------------------------
 
-TFINAL = 2.0
+TFINAL = 5.0
 
-CFL = 0.1
+CFL = 1.0
 
-METHOD = RK_2
+METHOD = EXPLICIT
 
 RIEMANN_SOLVER = GODUNOV
 
-MUSCL = TRUE
+MUSCL = FALSE
 
 FILENAME = solution.csv
 

@@ -17,20 +17,23 @@ from matplotlib.animation import FuncAnimation
 
 data = genfromtxt('solution.csv',delimiter=',')
 
-fig = plt.figure()
+fig = plt.figure(1)
 ax = fig.add_subplot(111,xlim=(-1,1),ylim=(-3,3))
 ax.set_title('solution')
 ax.set_xlabel('x')
 ax.set_ylabel('u(x,t)')
-line, = ax.plot([],[],'k-',lw=2)
+line, = ax.plot([],[],'k-', lw=2)
 nTime, nPoints = data.shape
+time = np.array(data[:, -1])
+nPoints = nPoints - 1
 print(nTime, nPoints)
 xAxis = np.linspace(-1,1,nPoints)
 
 def animate(i):
     global line
-    line.set_data(xAxis,data[i,:])
+    line.set_data(xAxis,data[i,0:-1])
     return line,
 
-ani = FuncAnimation(fig, animate, frames=len(data[:,0]),interval=1,blit=True)
+ani = FuncAnimation(fig, animate, frames=len(data[:,0:-1]),interval=10,blit=True)
 plt.show()
+

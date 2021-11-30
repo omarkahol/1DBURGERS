@@ -12,14 +12,19 @@ file.write("\n")
 
 # Variables
 
-FinalTime = 2.0
-Method = "RK_2" #can select either EXPLICT, RK_2, IMPLICIT
+FinalTime = 5.0
+Method = "EXPLICIT" #can select either EXPLICT, RK_2, IMPLICIT
 RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE, ROE_FIX
-MUSCL = "TRUE" #activate or deactivate 2nd order MUSCL scheme
+MUSCL = "FALSE" #activate or deactivate 2nd order MUSCL scheme
 Nx = 500
 Length = 2
-CFL_limit = 0.1
-u0 = lambda x: 1.0 if abs(x) < 0.5 else 0.0#ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
+CFL_limit = 1.
+u0 = lambda x: 1.0 if abs(x) < 0.5 else 0.0 #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
+#u0 = lambda x: np.piecewise(x, [abs(x) > 0.5, ((x >= -0.5)  and x <= 0), ((x <=0.5)  and x > 0)], [0, 1, -1])
+
+
+
+
 
 filename = "solution.csv"
 
@@ -63,4 +68,6 @@ for i in range(len(x)-1):
 file.write(meshstr)
 
 file.close()
+
+
 

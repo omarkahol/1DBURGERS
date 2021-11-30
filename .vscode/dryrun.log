@@ -1,13 +1,15 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
 mkdir -p output
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/main.cpp  -o src/main.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/explicit_solver.cpp  -o src/SOLVER/explicit_solver.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/fluxes.cpp  -o src/SOLVER/fluxes.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/SOLVER/lw_correction.cpp  -o src/SOLVER/lw_correction.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/IO/parser.cpp  -o src/IO/parser.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -c src/IO/writer.cpp  -o src/IO/writer.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/ -o output/main src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o  -Llib -L/externals/armadillo-10.7.1/ -larmadillo
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/main.cpp  -o src/main.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/limiters.cpp  -o src/SOLVER/limiters.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/muscl.cpp  -o src/SOLVER/muscl.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/riemann.cpp  -o src/SOLVER/riemann.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/solver.cpp  -o src/SOLVER/solver.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/log.cpp  -o src/IO/log.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/parser.cpp  -o src/IO/parser.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/writer.cpp  -o src/IO/writer.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -o output/main src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o  -Llib 
 echo Executing 'all' complete!
 make: Leaving directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
  

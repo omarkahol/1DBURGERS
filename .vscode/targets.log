@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Nov 26 15:05:56 2021
+# Make data base, printed on Tue Nov 30 14:10:34 2021
 
 # Variables
 
@@ -27,7 +27,7 @@ SNAP_INSTANCE_KEY =
 # makefile (from 'Makefile', line 47)
 MD := mkdir -p
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d395b90a-fcf2-476c-ab1b-14980a71f914.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f6050d60-87fa-4dc0-91b6-10788c1f4a78.sock
 # environment
 LC_NAME = it_IT.UTF-8
 # environment
@@ -37,7 +37,7 @@ VSCODE_CWD = /home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS
 # environment
 WINDOWPATH = 2
 # makefile (from 'Makefile', line 54)
-LIBS := -Llib -L/externals/armadillo-10.7.1/ -larmadillo
+LIBS := -Llib 
 # environment
 LC_ADDRESS = it_IT.UTF-8
 # default
@@ -81,7 +81,7 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.157
+GNOME_TERMINAL_SERVICE = :1.88
 # makefile
 MAKEFLAGS = pqrR
 # makefile
@@ -121,15 +121,15 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 16044
+VSCODE_PID = 3375
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from 'Makefile', line 51)
-INCLUDES := -Iinclude -Iinclude/SOLVER -Iinclude/IO -I/externals/armadillo-10.7.1/
+INCLUDES := -Iinclude -Iinclude/SOLVER -Iinclude/IO 
 # environment
-SESSION_MANAGER = local/cosimo-TUF-Gaming-FX505DV-FX505DV:@/tmp/.ICE-unix/2208,unix/cosimo-TUF-Gaming-FX505DV-FX505DV:/tmp/.ICE-unix/2208
+SESSION_MANAGER = local/cosimo-TUF-Gaming-FX505DV-FX505DV:@/tmp/.ICE-unix/2234,unix/cosimo-TUF-Gaming-FX505DV-FX505DV:/tmp/.ICE-unix/2234
 # automatic
 *F = $(notdir $*)
 # environment
@@ -161,7 +161,7 @@ LD_LIBRARY_PATH = :/home/cosimo/Documents/CFD2021/Code/OpenMPI/lib
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/5601785d_804a_4bbe_be28_3e07db24e55f
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/b9b7a34a_245c_4dcf_83df_2dd7edc14555
 # environment
 MAKELEVEL := 0
 # default
@@ -217,7 +217,7 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # makefile (from 'Makefile', line 7)
 ARMALIBDIR = /externals/armadillo-10.7.1/
 # makefile (from 'Makefile', line 60)
-OBJECTS := src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
+OBJECTS := src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -277,11 +277,11 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-4994d368-1.62.3-main.sock
 # environment
+ 
 TERM = xterm-256color
 # environment
 SNAP_NAME = code
 # environment
- 
 GSETTINGS_SCHEMA_DIR = /snap/code/82/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
@@ -312,7 +312,7 @@ CXX = g++
 # makefile (from 'Makefile', line 18)
 LFLAGS = 
 # makefile (from 'Makefile', line 57)
-SOURCES := src/main.cpp src/SOLVER/explicit_solver.cpp src/SOLVER/fluxes.cpp src/SOLVER/lw_correction.cpp src/IO/parser.cpp src/IO/writer.cpp
+SOURCES := src/main.cpp src/SOLVER/limiters.cpp src/SOLVER/muscl.cpp src/SOLVER/riemann.cpp src/SOLVER/solver.cpp src/IO/log.cpp src/IO/parser.cpp src/IO/writer.cpp
 # environment
 SNAP_USER_DATA = /home/cosimo/snap/code/82
 # environment
@@ -324,7 +324,7 @@ LC_IDENTIFICATION = it_IT.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=156/1024=15%, Rehash=0, Collisions=27/226=12%
+# Load=156/1024=15%, Rehash=0, Collisions=26/224=12%
 
 # Pattern-specific Variable Values
 
@@ -332,12 +332,12 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# src/IO (device 66308, inode 7346722): 6 files, no impossibilities.
-# src/SOLVER (device 66308, inode 7346725): 8 files, no impossibilities.
-# src (device 66308, inode 7346721): 6 files, no impossibilities.
-# . (device 66308, inode 7340578): 23 files, no impossibilities.
+# src/IO (device 66308, inode 7345384): 8 files, no impossibilities.
+# src/SOLVER (device 66308, inode 7345388): 10 files, no impossibilities.
+# src (device 66308, inode 7345382): 6 files, no impossibilities.
+# . (device 66308, inode 7340172): 18 files, no impossibilities.
 
-# 43 files, no impossibilities in 4 directories.
+# 42 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -348,42 +348,35 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 src/IO/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 14:39:30.760179394
+#  Last modified 2021-11-30 11:23:03.675404492
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/SOLVER/explicit_solver.o:
+src/SOLVER/solver.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 14:39:29.304179345
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/SOLVER/fluxes.o:
-#  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:58:02.480095204
+#  Last modified 2021-11-30 11:23:01.587404579
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/IO/writer.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 14:39:31.044179404
+#  Last modified 2021-11-30 11:23:04.051404477
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:49:03.136076956
+#  Last modified 2021-11-29 13:32:25.507668425
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/SOLVER/lw_correction.o:
+src/SOLVER/riemann.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 13:58:02.66009521
+#  Last modified 2021-11-30 11:23:01.011404603
 #  File has been updated.
 #  Successfully updated.
 
@@ -397,6 +390,13 @@ clean:
 	$(RM) $(call FIXPATH,$(OBJECTS))
 	@echo Cleanup complete!
 
+# Not a target:
+src/SOLVER/muscl.o:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-30 11:23:00.987404604
+#  File has been updated.
+#  Successfully updated.
+
 .cpp.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -407,7 +407,7 @@ clean:
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-26 14:39:28.816179328
+#  Last modified 2021-11-30 11:23:00.427404627
 #  File has been updated.
 #  Successfully updated.
 
@@ -419,7 +419,7 @@ src/main.o:
 
 output:
 #  Implicit rule search has not been done.
-#  Last modified 2021-11-26 14:56:43.672058094
+#  Last modified 2021-11-30 11:23:04.067404476
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 74):
@@ -444,7 +444,7 @@ run: all
 	./$(OUTPUTMAIN)
 	@echo Executing 'run: all' complete!
 
-main: src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
+main: src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
@@ -457,13 +457,13 @@ main: src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_
 # automatic
 # < := src/main.o
 # automatic
-# + := src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
+# + := src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o
 # automatic
 # % := 
 # automatic
-# ^ := src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
+# ^ := src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o
 # automatic
-# ? := src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_correction.o src/IO/parser.o src/IO/writer.o
+# ? := src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o
 # automatic
 # | := 
 # variable set hash-table stats:
@@ -482,20 +482,34 @@ main: src/main.o src/SOLVER/explicit_solver.o src/SOLVER/fluxes.o src/SOLVER/lw_
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/IO/log.o:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-30 11:23:01.979404562
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/SOLVER/limiters.o:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-30 11:23:00.579404621
+#  File has been updated.
+#  Successfully updated.
+
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=0/41=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/45=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 55 / storage = 702 B / avg = 12 B
-# current buf: size = 8162 B / used = 702 B / count = 55 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 56 / storage = 569 B / avg = 10 B
+# current buf: size = 8162 B / used = 569 B / count = 56 / avg = 10 B
 
-# strcache performance: lookups = 80 / hit rate = 31%
+# strcache performance: lookups = 81 / hit rate = 30%
 # hash-table stats:
-# Load=55/8192=1%, Rehash=0, Collisions=0/80=0%
-# Finished Make data base on Fri Nov 26 15:05:56 2021
+# Load=56/8192=1%, Rehash=0, Collisions=0/81=0%
+# Finished Make data base on Tue Nov 30 14:10:34 2021
 
  

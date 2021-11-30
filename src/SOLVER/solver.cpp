@@ -17,7 +17,8 @@ void PDE::SOLVER::explicit_solver(std::vector<double> *solution, std::vector<dou
         The control is not on the time step but on the CFL number
     */
     solutionPrev = &(data.u0);
-    PDE::IO::writer(data.solution_filename, solutionPrev, std::ios::out);
+    double t = 0.;
+    PDE::IO::writer(data.solution_filename, solutionPrev, t, std::ios::out);
     double max_sol = maximum(solutionPrev);
     //----------------------------------------------------------------------------------------------------------------------
     
@@ -41,7 +42,7 @@ void PDE::SOLVER::explicit_solver(std::vector<double> *solution, std::vector<dou
     //--------------------------------------------------------------------------------------------------------------------------
 
     //START LOOPING IN TIME
-    for (double t = 0.0; t < data.t_final; t += k) {
+    for (t; t < data.t_final; t += k) {
 
         max_sol = 0.0;
 		for (int j=0; j<data.nx; j++) { //ITERATE IN THE CENTERAL DOMAIN
@@ -67,7 +68,7 @@ void PDE::SOLVER::explicit_solver(std::vector<double> *solution, std::vector<dou
 
         k = data.CFL*h/max_sol;
 
-        PDE::IO::writer(data.solution_filename, solution, std::ios::app);
+        PDE::IO::writer(data.solution_filename, solution, t + k, std::ios::app);
         PDE::IO::log_explicit(iteration, t, k, max_sol);
 
 
@@ -87,7 +88,8 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
         The control is not on the time step but on the CFL number
     */
     solutionPrev = &(data.u0);
-    PDE::IO::writer(data.solution_filename, solutionPrev, std::ios::out);
+    double t = 0.0;
+    PDE::IO::writer(data.solution_filename, solutionPrev, t, std::ios::out);
     double max_sol = maximum(solutionPrev);
     //----------------------------------------------------------------------------------------------------------------------
     
@@ -111,7 +113,7 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
     //--------------------------------------------------------------------------------------------------------------------------
 
     std::vector<double> intSolution(data.nx);
-    for (double t = 0.0; t < data.t_final; t += k) {
+    for (t; t < data.t_final; t += k) {
 
         max_sol = 0.0;
 
@@ -129,7 +131,7 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
                 flux_difference = PDE::SOLVER::MUSCL(data, solutionPrev->at(jPrevPrev), solutionPrev->at(jPrev),
                     solutionPrev->at(j), solutionPrev->at(jNext),solutionPrev->at(jNextNext));
             } else {
-                flux_difference = PDE::SOLVER::UPWIND(data,solutionPrev->at(jPrev), solutionPrev->at(j), solutionPrev->at(jNext));
+                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev), solutionPrev->at(j), solutionPrev->at(jNext));
             }
 
             intSolution[j] = solutionPrev->at(j) - 0.5*(k/h)*flux_difference;
@@ -148,7 +150,7 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
                 flux_difference = PDE::SOLVER::MUSCL(data, intSolution.at(jPrevPrev), intSolution.at(jPrev),
                     intSolution.at(j), intSolution.at(jNext),intSolution.at(jNextNext));
             } else {
-                flux_difference = PDE::SOLVER::UPWIND(data,intSolution.at(jPrev), intSolution.at(j), intSolution.at(jNext));
+                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev), solutionPrev->at(j), solutionPrev->at(jNext));
             }
             
 
@@ -158,7 +160,7 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
 
         k = data.CFL*h/max_sol;
 
-        PDE::IO::writer(data.solution_filename, solution, std::ios::app);
+        PDE::IO::writer(data.solution_filename, solution, t + k, std::ios::app);
         PDE::IO::log_explicit(iteration, t, k, max_sol);
 
         solutionPrev = solution;
