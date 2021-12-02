@@ -6,9 +6,11 @@
 #include "problem_data.h"
 
 namespace PDE::SOLVER {
+    double MUSCL_LINEAR(const PDE::IO::problem_data &data, double uPrevPrev, double uPrev, double u, double uNext, double uNextNext);
     double MUSCL_PARABOLIC(const PDE::IO::problem_data &data,double uPrevPrev, double uPrev, double u, double uNext, double uNextNext);
     double UPWIND(const PDE::IO::problem_data &data, double uPrev, double u, double uNext);
     double KT(const PDE::IO::problem_data &data, double uPrevPrev, double uPrev, double u, double uNext, double uNextNext);
+    double LAX_WENDROFF(const PDE::IO::problem_data &data,double uPrevPrev, double uPrev, double u, double uNext, double uNextNext);
 }
 
 

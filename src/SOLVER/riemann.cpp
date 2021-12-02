@@ -34,10 +34,6 @@ double PDE::SOLVER::roe_fix(double ul, double ur) {
     }
 }
 
-double PDE::SOLVER::roe(double ul, double ur) {
-    //TODO
-    return 0.0;
-}
 
 double PDE::SOLVER::burgers_flux(double u) {
     return 0.5*u*u;

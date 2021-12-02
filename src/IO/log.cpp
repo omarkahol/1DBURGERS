@@ -2,7 +2,7 @@
 
 void PDE::IO::title() {
     std::cout << std::setw(15) << std::setfill(' ') << "Iteration" << std::setw(18) << std::setfill(' ') << "Time" << std::setw(30) << std::setfill(' ') << "Time increment" << std::setw(22) << std::setfill(' ') << "|| u ||" << std::endl;
-    std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------------------------------------------------------" << std::endl;
     std::cout << std::endl;
 }
 

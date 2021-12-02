@@ -37,6 +37,8 @@ void PDE::IO::parser::parse() {
                     data.method = &PDE::SOLVER::explicit_solver;
                 } else if (split_lines[1]=="RK_2") {
                     data.method = &PDE::SOLVER::rk_solver;
+                } else if (split_lines[1]=="RK_3") {
+                    data.method = &PDE::SOLVER::rk_4;
                 } else {
                     std::cout << "UNKNOWN METHOD. ABORTING EXECUTION...";
                     throw 1;
@@ -48,10 +50,25 @@ void PDE::IO::parser::parse() {
                     data.riemann_solver = &PDE::SOLVER::godunov;
                 } else if (split_lines[1]=="ROE_FIX") {
                     data.riemann_solver = &PDE::SOLVER::roe_fix;
-                } else if (split_lines[1]=="ROE") {
-                    data.riemann_solver = &PDE::SOLVER::roe;
                 } else {
                     std::cout << "UNKNOWN RIEMANN SOLVER. ABORTING EXECUTION...";
+                    throw 1;
+                }
+
+            } else if (split_lines[0] == "LIMITER") {
+               
+                if (split_lines[1]=="NONE") {
+                    data.limiter =  [](double,double,double) {return 1.0;};
+                } else if (split_lines[1]=="VAN_ALBADA") {
+                    data.limiter = &PDE::SOLVER::vanAlbada;
+                } else if (split_lines[1]=="VAN_LEER") {
+                    data.limiter = &PDE::SOLVER::vanLeer;
+                } else if (split_lines[1]=="MINMOD") {
+                    data.limiter = &PDE::SOLVER::minmod;
+                } else if (split_lines[1]=="SUPERBEE") {
+                    data.limiter = &PDE::SOLVER::superbee;
+                } else {
+                    std::cout << "UNKNOWN LIMITER CHOICE. ABORTING EXECUTION...";
                     throw 1;
                 }
 
@@ -59,10 +76,20 @@ void PDE::IO::parser::parse() {
                 data.nx = std::atoi(split_lines[1].c_str())-1;
             } else if (split_lines[0] == "MESH") {
                 raw_msh = split_lines[1];
-            } else if (split_lines[0] == "MUSCL") {
-                
-                data.MUSCL = (split_lines[1] == "TRUE")?true:false;
-            } else if (split_lines[0] == "FILENAME") {
+            } else if (split_lines[0] == "SECOND_ORDER_CORRECTION_TYPE") {
+                if (split_lines[1]=="MUSCL_LINEAR") {
+                    data.Reconstruction = &PDE::SOLVER::MUSCL_LINEAR;
+                }else  if (split_lines[1] == "MUSCL_PARABOLIC"){
+                    data.Reconstruction = &PDE::SOLVER::MUSCL_PARABOLIC;
+                }else  if (split_lines[1] == "LAX_WENDROFF"){
+                    data.Reconstruction = &PDE::SOLVER::LAX_WENDROFF;
+                }else{
+                    std::cout << "UNKNOWN RECONSTRUCTION METHOD, ABORTING EXECUTION...";
+                    throw 1;
+                }
+            } else if(split_lines[0] == "SECOND_ORDER_CORRECTION"){
+                data.SEC_ORD_CORR = (split_lines[1] == "TRUE")?true:false;
+            }else if (split_lines[0] == "FILENAME") {
                 data.solution_filename = split_lines[1];
             }
             
