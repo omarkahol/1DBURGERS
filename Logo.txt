@@ -35,10 +35,10 @@ The 1-Dimensional Burgers' equation:
 
 will be solved using the following configuration: 
 ------------------------------------------------------------------------------------------------
-|   NUMBER OF VOLUMES          :            400                                                |
-|   VOLUME DIMENSION           :            0.005012531328320802                               |
-|   COURANT NUMBER             :            0.9                                                |
-|   FINAL TIME                 :            4.0                                                |
+|   NUMBER OF VOLUMES          :            1700                                               |
+|   VOLUME DIMENSION           :            0.0011771630370806356                              |
+|   COURANT NUMBER             :            0.4                                                |
+|   FINAL TIME                 :            1.0                                                |
 |   TIME INTEGRATION           :            RK_3                                               |
 |   RIEMANN SOLVER             :            GODUNOV                                            |
 |   SECOND ORDER CORRECTION    :            TRUE                                               |

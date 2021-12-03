@@ -25,7 +25,8 @@ ax = fig.add_subplot(111, xlim=(-1,1), ylim=(0, data[-1,-1]))
 time = data[:, -1]
 u = data[:,:-1]
 nTime, nPoints = u.shape
-xAxis = np.linspace(-1, 1, nPoints)
+xAxis = np.linspace(-1, 1, nPoints+1)
+meshPoints = 0.5*(xAxis[0:-1]+xAxis[1:])
 
 # X-T plane -- Contour plot
 X , T = np.meshgrid(xAxis, time)
@@ -37,9 +38,9 @@ ax.set_ylabel('time')
 
 
 
-skip = 2
+skip = 20
 
-x0 = xAxis[0:-1:skip]
+x0 = meshPoints[0:-1:skip]
 
 Characteristics = np.zeros((nTime, len(x0)-1))
 index = np.arange(0,nPoints,skip)

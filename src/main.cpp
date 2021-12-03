@@ -1,5 +1,4 @@
 #include "parser.h"
-#include "armadillo"
 #include "solver.h"
 #include "Simulation_parser.h"
 #include <chrono>

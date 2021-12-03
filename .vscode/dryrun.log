@@ -1,6 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
- 
 mkdir -p output
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/main.cpp  -o src/main.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/limiters.cpp  -o src/SOLVER/limiters.o

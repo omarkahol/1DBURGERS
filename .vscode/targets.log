@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec  2 16:28:41 2021
+# Make data base, printed on Fri Dec  3 10:24:26 2021
 
 # Variables
 
@@ -27,7 +27,7 @@ SNAP_INSTANCE_KEY =
 # makefile (from 'Makefile', line 47)
 MD := mkdir -p
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b455a0e9-f645-4467-8d92-cb0e2d5b0364.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c6519adf-c3a0-4b0c-a34f-a3e11dc1a2d9.sock
 # environment
 LC_NAME = it_IT.UTF-8
 # environment
@@ -73,13 +73,13 @@ VSCODE_CODE_CACHE_PATH = /home/cosimo/.config/Code/CachedData/ccbaa2d27e38e5afa3
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.PYVRD1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.AGOJD1
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.103
+GNOME_TERMINAL_SERVICE = :1.120
 # makefile
 MAKEFLAGS = pqrR
 # makefile
@@ -121,7 +121,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 11561
+VSCODE_PID = 10015
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -129,7 +129,7 @@ XDG_SESSION_TYPE = wayland
 # makefile (from 'Makefile', line 51)
 INCLUDES := -Iinclude -Iinclude/SOLVER -Iinclude/IO 
 # environment
-SESSION_MANAGER = local/cosimo-TUF-Gaming-FX505DV-FX505DV:@/tmp/.ICE-unix/1654,unix/cosimo-TUF-Gaming-FX505DV-FX505DV:/tmp/.ICE-unix/1654
+SESSION_MANAGER = local/cosimo-TUF-Gaming-FX505DV-FX505DV:@/tmp/.ICE-unix/1712,unix/cosimo-TUF-Gaming-FX505DV-FX505DV:/tmp/.ICE-unix/1712
 # automatic
 *F = $(notdir $*)
 # environment
@@ -161,7 +161,7 @@ LD_LIBRARY_PATH = :/home/cosimo/Documents/CFD2021/Code/OpenMPI/lib
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/d0c0f9d9_39b0_46f0_92f9_2b941ab57fe8
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/2ce564db_fa4f_4cd5_8d38_78e9925335e7
 # environment
 MAKELEVEL := 0
 # default
@@ -290,7 +290,6 @@ PAPERSIZE = a4
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
- 
 # environment
 SNAP_VERSION = ccbaa2d2
 # default
@@ -301,6 +300,7 @@ VSCODE_CLI = 1
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VTE_VERSION = 6203
+ 
 # environment
 SNAP_COMMON = /var/snap/code/common
 # makefile (from 'Makefile', line 13)
@@ -332,12 +332,12 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# src/IO (device 66308, inode 7345384): 11 files, no impossibilities.
+# src/IO (device 66308, inode 7345384): 10 files, no impossibilities.
 # src/SOLVER (device 66308, inode 7345388): 10 files, no impossibilities.
 # src (device 66308, inode 7345382): 6 files, no impossibilities.
-# . (device 66308, inode 7340172): 19 files, no impossibilities.
+# . (device 66308, inode 7340172): 22 files, no impossibilities.
 
-# 46 files, no impossibilities in 4 directories.
+# 48 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -348,21 +348,21 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 src/IO/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:57.36224216
+#  Last modified 2021-12-02 18:05:26.475105275
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/SOLVER/solver.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:55.330242244
+#  Last modified 2021-12-02 18:05:24.102983041
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/IO/writer.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:58.774242101
+#  Last modified 2021-12-02 18:05:28.267196349
 #  File has been updated.
 #  Successfully updated.
 
@@ -376,7 +376,7 @@ Makefile:
 # Not a target:
 src/SOLVER/riemann.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:54.782242267
+#  Last modified 2021-12-02 18:05:23.442948635
 #  File has been updated.
 #  Successfully updated.
 
@@ -393,7 +393,7 @@ clean:
 # Not a target:
 src/SOLVER/muscl.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:54.762242267
+#  Last modified 2021-12-02 18:05:23.422947591
 #  File has been updated.
 #  Successfully updated.
 
@@ -407,14 +407,14 @@ src/SOLVER/muscl.o:
 # Not a target:
 src/IO/Simulation_parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:58.446242115
+#  Last modified 2021-12-02 18:05:27.85517552
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:54.198242291
+#  Last modified 2021-12-02 22:13:20.800996104
 #  File has been updated.
 #  Successfully updated.
 
@@ -426,7 +426,7 @@ src/main.o:
 
 output:
 #  Implicit rule search has not been done.
-#  Last modified 2021-12-02 16:19:30.450223369
+#  Last modified 2021-12-02 22:13:20.97299586
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 74):
@@ -492,14 +492,14 @@ main: src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o s
 # Not a target:
 src/IO/log.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:11:55.67024223
+#  Last modified 2021-12-02 18:05:24.559006671
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/SOLVER/limiters.o:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-02 16:19:30.442223369
+#  Last modified 2021-12-02 22:13:20.968995866
 #  File has been updated.
 #  Successfully updated.
 
@@ -511,12 +511,12 @@ src/SOLVER/limiters.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 61 / storage = 654 B / avg = 10 B
-# current buf: size = 8162 B / used = 654 B / count = 61 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 63 / storage = 693 B / avg = 11 B
+# current buf: size = 8162 B / used = 693 B / count = 63 / avg = 11 B
 
-# strcache performance: lookups = 86 / hit rate = 29%
+# strcache performance: lookups = 88 / hit rate = 28%
 # hash-table stats:
-# Load=61/8192=1%, Rehash=0, Collisions=0/86=0%
-# Finished Make data base on Thu Dec  2 16:28:41 2021
+# Load=63/8192=1%, Rehash=0, Collisions=0/88=0%
+# Finished Make data base on Fri Dec  3 10:24:26 2021
 
  

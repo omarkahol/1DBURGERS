@@ -83,6 +83,8 @@ void PDE::IO::parser::parse() {
                     data.Reconstruction = &PDE::SOLVER::MUSCL_PARABOLIC;
                 }else  if (split_lines[1] == "LAX_WENDROFF"){
                     data.Reconstruction = &PDE::SOLVER::LAX_WENDROFF;
+                }else  if (split_lines[1] == "KT"){
+                    data.Reconstruction = &PDE::SOLVER::KT;
                 }else{
                     std::cout << "UNKNOWN RECONSTRUCTION METHOD, ABORTING EXECUTION...";
                     throw 1;

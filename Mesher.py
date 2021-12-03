@@ -14,23 +14,22 @@ file.write("\n")
 
 # Variables
 
-FinalTime = 4.
+FinalTime = 1.
 Method = "RK_3" #can select either EXPLICT, RK_2, RK_3
-RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE, ROE_FIX
+RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE_FIX
 Limiter = "VAN_ALBADA" #can select among MINMOD, SUPERBEE, VAN_LEER, VAN_ALBADA, NONE
 SECOND_ORDER_CORRECTION = "TRUE" #activate or deactivate 2nd order MUSCL scheme. Choice: TRUE or FALSE  //SECOND ORDER CORRECTION
-SECOND_ORDER_CORRECTION_TYPE = "MUSCL_PARABOLIC" #if MUSCL == FALSE, it is considered. It can be selected among MUSCL_LINEAR, MUSCL_PARABOLIC, LAX_WENDROFF
-Nx = 400
+SECOND_ORDER_CORRECTION_TYPE = "MUSCL_PARABOLIC" #if MUSCL == FALSE, it is considered. It can be selected among MUSCL_LINEAR, MUSCL_PARABOLIC, LAX_WENDROFF, KT
+Nx = 1700
 Length = 2
-CFL = 0.9
-u0 = lambda x: 1.0 if abs(x) < 0.5 else 0.0 #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION
+CFL = 0.4
+u0 = lambda x: 1.0 if abs(x) < 0.5 else 0.0  #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION ----> RK_3, VAN_ALBADA, GODUNOV, MUSCL_() 
 #u0 = lambda x: np.piecewise(x, [abs(x) > 0.5, ((x >= -0.5)  and x <= 0), ((x <=0.5)  and x > 0)], [0, 1, -1])
 
 
 
-
-
-filename = "solution.csv"
+filename = "Results/solution_" + Method + "_" + RiemannSolver + "_" + Limiter + "_"+\
+             SECOND_ORDER_CORRECTION + "_" + SECOND_ORDER_CORRECTION_TYPE + "_" + str(Nx) + ".csv"
 
 file.write("TFINAL = {}\n".format(FinalTime))
 file.write("\n")
