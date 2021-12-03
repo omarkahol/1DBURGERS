@@ -113,7 +113,7 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
     //--------------------------------------------------------------------------------------------------------------------------
 
     std::vector<double> intSolution(data.nx);
-    for (t; t < data.t_final; t += k) {
+    for (t; t < data.t_final; t += 1.5*k) {
 
         max_sol = 0.0;
 

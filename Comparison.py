@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from numpy import genfromtxt
 from matplotlib.animation import FuncAnimation
 
-data = genfromtxt('Results/solution_RK_3_GODUNOV_VAN_ALBADA_TRUE_MUSCL_PARABOLIC_600.csv',delimiter=',')
+data = genfromtxt('Results/solution_RK_2_GODUNOV_VAN_LEER_TRUE_LAX_WENDROFF_1000.csv',delimiter=',')
 time = data[:, -1]
 u = data[:,0:-1]
 TimeIdx = -2

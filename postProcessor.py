@@ -15,7 +15,7 @@ from matplotlib.animation import FuncAnimation
 #   './results/EXPLICIT_UPWIND_2_ORD_VAN_LEER.csv'
 
 
-data = genfromtxt('Results/solution_RK_3_GODUNOV_VAN_ALBADA_TRUE_MUSCL_PARABOLIC_500.csv',delimiter=',')
+data = genfromtxt('Results/solution_RK_2_GODUNOV_MINMOD_TRUE_LAX_WENDROFF_1000.csv',delimiter=',')
 
 fig = plt.figure(1)
 ax = fig.add_subplot(111,xlim=(-1,1),ylim=(-3,3))

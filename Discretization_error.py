@@ -3,12 +3,11 @@ from math import *
 import matplotlib.pyplot as plt
 from numpy import genfromtxt
 from matplotlib.animation import FuncAnimation
+from scipy.integrate import quad
 
+Nx = np.array([10, 50, 100, 500])
 
-Nx = np.array([500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700])
-h = 2/(Nx-1)
-
-TimeIdx = -2
+TimeIdx = -1
 
 err_vec1 = np.zeros((len(Nx,)))
 err_vec2 = np.zeros((len(Nx,)))
@@ -38,46 +37,34 @@ def u_exact(x,t):
             return 0.
 
     return
-
+h = []
 for n in range(len(Nx)):
-    data = genfromtxt('Results/solution_RK_3_GODUNOV_VAN_ALBADA_TRUE_MUSCL_PARABOLIC_{:}.csv'.format(Nx[n]),delimiter=',')
+    data = genfromtxt('Results/solution_RK_2_GODUNOV_VAN_LEER_TRUE_LAX_WENDROFF_{:}.csv'.format(Nx[n]),delimiter=',')
     u= data[:,0:-1]
     time = data[TimeIdx,-1]
 
     Analytic_sol = np.zeros((u.shape[1],))
+    print(time)
 
     xAxis = np.linspace(-1,1,u.shape[1] + 1)
     meshPoints = 0.5*(xAxis[0:-1]+xAxis[1:])
+    h.append(meshPoints[1]-meshPoints[0])
     for i in range(len(meshPoints)):
-        Analytic_sol[i] = u_exact(meshPoints[i], time)
+        Analytic_sol[i] = (1./h[n]) * quad(lambda x: u_exact(x, time), meshPoints[i]-0.5*h[n],meshPoints[i]+0.5*h[n])[0]
 
-    err_vec2[n] = np.linalg.norm(u[TimeIdx,:] - Analytic_sol)/Nx[n]
-    err_vec1[n] = np.linalg.norm(u[TimeIdx,:] - Analytic_sol, 1)/Nx[n]
+    err_vec2[n] = np.linalg.norm(u[TimeIdx,:] - Analytic_sol, 2)/Nx[n]
     
-
+h = np.array(h)
 # Setting the figure
 fig = plt.figure(1)
 ax = fig.add_subplot(111)
-ax.set_title('Error decay with h', fontsize=20) 
-ax.set_xlabel('h', fontsize=20)
-ax.set_ylabel('Error (Norm-1)', fontsize=20)
-ax.loglog(h, err_vec1, 'r-')
-ax.loglog(h, h, 'b-')
-ax.loglog(h, h**2, 'k-')
-#ax.plot(Nx, err_vec, 'r-')
-plt.legend(['Norm-1', 'O(h)', 'O(h^2)'])
-
-# Setting the figure
-fig = plt.figure(2)
-ax = fig.add_subplot(111)
-ax.set_title('Error decay with h', fontsize=20) 
+ax.set_title('Godunov, RK2', fontsize=20) 
 ax.set_xlabel('h', fontsize=20)
 ax.set_ylabel('Error (Norm-2)', fontsize=20)
-ax.loglog(h, err_vec2, 'r-')
-ax.loglog(h, h, 'b-')
-ax.loglog(h, h**2, 'k-')
-plt.legend(['Norm-2', 'O(h)', 'O(h^2)'])
-#ax.plot(Nx, err_vec, 'r-')
+ax.loglog(h, err_vec2, 'k-')
+normalize = err_vec2[0]/(h[0]**1.5)
+ax.loglog(h,normalize*h**1.5, 'b-')
+plt.legend(['Error', 'O(h^1.5)'])
 
 plt.show()
 

@@ -4,22 +4,12 @@
 
 double PDE::SOLVER::godunov(double ul, double ur) {
     double s = 0.5*(ul+ur);
-    if (ul > ur) { // SHOCK CASE
-
-        if (s>0) { //UPWIND PROPAGATION
-            return ul;
-        } else { //DOWNWIND PROPAGATION
-            return ur;
-        }
-
-    } else { //RAREFACTION FAN CASE
-        if (ul < 0 && ur > 0) { //SONIC CASE
-           return 0.0;
-        } else if (ul > 0) { //FAN THAT PROPAGATES UPWIND
-            return ul;
-        } else { //FAN THAT PROPAGATES DOWNWIND
-            return ur;
-        }
+    if (ul >= 0 && s >=0) {
+        return ul;
+    } else if (ur >= 0 && s <= 0) {
+        return ur;
+    } else {
+        return 0.0;
     }
 }
 
