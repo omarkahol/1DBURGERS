@@ -11,8 +11,8 @@
 
 namespace PDE::SOLVER {
     void explicit_solver(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data);
-    void rk_solver(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data);
-    void rk_4(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data);
+    void rk_2(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data);
+    void rk_3(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data);
     double maximum(std::vector<double> *vec);
 }
 

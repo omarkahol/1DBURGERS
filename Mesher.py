@@ -15,12 +15,12 @@ file.write("\n")
 # Variables
 
 FinalTime = 0.5
-Method = "RK_2" #can select either EXPLICT, RK_2, RK_3
+Method = "RK_3" #can select either EXPLICT, RK_2, RK_3
 RiemannSolver = "GODUNOV" #can select either GODUNOV, ROE_FIX
 Limiter = "VAN_LEER" #can select among MINMOD, SUPERBEE, VAN_LEER, VAN_ALBADA, NONE
 SECOND_ORDER_CORRECTION = "TRUE" #activate or deactivate 2nd order MUSCL scheme. Choice: TRUE or FALSE  //SECOND ORDER CORRECTION
-SECOND_ORDER_CORRECTION_TYPE = "LAX_WENDROFF" #if MUSCL == FALSE, it is considered. It can be selected among MUSCL_LINEAR, MUSCL_PARABOLIC, LAX_WENDROFF, KT
-Nx = 1000
+SECOND_ORDER_CORRECTION_TYPE = "MUSCL_LINEAR" #if MUSCL == FALSE, it is considered. It can be selected among MUSCL_LINEAR, MUSCL_PARABOLIC, LAX_WENDROFF, KT
+Nx = 50
 Length = 2
 CFL = 0.1
 u0 = lambda x: 1.0 if abs(x) <= 0.5 else 0.0  #ANALYTICAL EXPRESSION OF THE INITIAL CONDITION ----> RK_3, VAN_ALBADA, GODUNOV, MUSCL_() 
@@ -28,7 +28,7 @@ u0 = lambda x: 1.0 if abs(x) <= 0.5 else 0.0  #ANALYTICAL EXPRESSION OF THE INIT
 
 
 
-filename = "Results/solution_" + Method + "_" + RiemannSolver + "_" + Limiter + "_"+\
+filename = "Results/Caso_1/solution_" + Method + "_" + RiemannSolver + "_" + Limiter + "_"+\
              SECOND_ORDER_CORRECTION + "_" + SECOND_ORDER_CORRECTION_TYPE + "_" + str(Nx) + ".csv"
 
 file.write("TFINAL = {}\n".format(FinalTime))
@@ -77,7 +77,7 @@ file.write(meshstr)
 file.close()
 
 
-'''
+
 file2 = open("Logo.txt", 'w')
 
 file2.write("//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//")
@@ -150,4 +150,3 @@ file2.write(Text)
 
 file2.close()
 
-'''

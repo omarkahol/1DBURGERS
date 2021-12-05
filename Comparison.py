@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from numpy import genfromtxt
 from matplotlib.animation import FuncAnimation
 
-data = genfromtxt('Results/solution_RK_2_GODUNOV_VAN_LEER_TRUE_LAX_WENDROFF_1000.csv',delimiter=',')
+data = genfromtxt('Results/Caso_1/solution_RK_3_GODUNOV_VAN_LEER_TRUE_MUSCL_LINEAR_500.csv',delimiter=',')
 time = data[:, -1]
 u = data[:,0:-1]
 TimeIdx = -2
@@ -15,8 +15,8 @@ print(len(time))
 
 # Setting the figure
 fig = plt.figure(fig_num)
-ax = fig.add_subplot(111)
-ax.set_title('Solution at time: t = {:f}'.format(time[TimeIdx]), fontsize=20) 
+ax = fig.add_subplot(111, xlim=(0.74,0.78))
+ax.set_title('RK3 method - Solution at time: t = {:f}'.format(time[TimeIdx]), fontsize=20) 
 ax.set_xlabel('x', fontsize=20)
 ax.set_ylabel('u(x,t)', fontsize=20)
 
@@ -61,7 +61,7 @@ Analytic_sol = np.zeros((nPoints,))
 for i in range(len(meshPoints)):
     Analytic_sol[i] = u1(meshPoints[i], time[TimeIdx])
 
-ax.plot(meshPoints, Analytic_sol, 'r-', lw = 2)
+ax.plot(meshPoints, Analytic_sol, 'r--', lw = 2)
 fig_num += 1
 
 plt.legend(['Numerical solution', 'Analitical solution'])

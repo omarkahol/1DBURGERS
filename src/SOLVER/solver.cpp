@@ -79,7 +79,7 @@ void PDE::SOLVER::explicit_solver(std::vector<double> *solution, std::vector<dou
 
 }
 
-void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data) {
+void PDE::SOLVER::rk_2(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data) {
     
     //----------------------------------------------------------------------------------------------------------------------
     /*
@@ -171,7 +171,8 @@ void PDE::SOLVER::rk_solver(std::vector<double> *solution, std::vector<double> *
 
 
 
-void PDE::SOLVER::rk_4(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data) {
+
+void PDE::SOLVER::rk_3(std::vector<double> *solution, std::vector<double> *solutionPrev, PDE::IO::problem_data &data) {
     
     //----------------------------------------------------------------------------------------------------------------------
     /*
@@ -205,7 +206,7 @@ void PDE::SOLVER::rk_4(std::vector<double> *solution, std::vector<double> *solut
     //--------------------------------------------------------------------------------------------------------------------------
 
     std::vector<double> intSolution(data.nx);
-    for (t; t < data.t_final; t += k) {
+    for (t; t < data.t_final; t += 1.5*k) {
 
         max_sol = 0.0;
         double k1, k2, k3;
@@ -231,23 +232,23 @@ void PDE::SOLVER::rk_4(std::vector<double> *solution, std::vector<double> *solut
 
             //EVOLVE THE SOLUTION SECOND TIME
             if (data.SEC_ORD_CORR) {
-                flux_difference = data.Reconstruction(data, solutionPrev->at(jPrevPrev) + 0.5*k1, solutionPrev->at(jPrev) + 0.5*k1,
-                    solutionPrev->at(j) + 0.5*k1, solutionPrev->at(jNext) + 0.5*k1,solutionPrev->at(jNextNext) + 0.5*k1);
+                flux_difference = data.Reconstruction(data, solutionPrev->at(jPrevPrev) - 0.5/h*k1, solutionPrev->at(jPrev) - 0.5/h*k1,
+                    solutionPrev->at(j) - 0.5/h*k1, solutionPrev->at(jNext) - 0.5/h*k1,solutionPrev->at(jNextNext) - 0.5/h*k1);
             } else {
-                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev) + 0.5*k1, solutionPrev->at(j) + 0.5*k1, solutionPrev->at(jNext) + 0.5*k1);
+                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev) - 0.5*k1, solutionPrev->at(j) - 0.5*k1, solutionPrev->at(jNext) - 0.5*k1);
             }
 
             k2 = k*flux_difference;
 
             //EVOLVE THE SOLUTION THIRD TIME
             if (data.SEC_ORD_CORR) {
-                flux_difference = data.Reconstruction(data, solutionPrev->at(jPrevPrev) + 2*k2 - k1, solutionPrev->at(jPrev) + 2*k2 - k1,
-                    solutionPrev->at(j) + 2*k2 - k1, solutionPrev->at(jNext) + 2*k2 - k1,solutionPrev->at(jNextNext) + 2*k2 - k1);
+                flux_difference = data.Reconstruction(data, solutionPrev->at(jPrevPrev) - (2*k2 - k1)/h, solutionPrev->at(jPrev) - (2*k2 - k1)/h,
+                    solutionPrev->at(j) - (2*k2 - k1)/h, solutionPrev->at(jNext) - (2*k2 - k1)/h,solutionPrev->at(jNextNext) - (2*k2 - k1)/h);
             } else {
-                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev) + 2*k2 - k1, solutionPrev->at(j) + 2*k2 - k1, solutionPrev->at(jNext) + 2*k2 - k1);
+                flux_difference = PDE::SOLVER::UPWIND(data, solutionPrev->at(jPrev) - (2*k2 - k1)/h, solutionPrev->at(j) - (2*k2 - k1)/h, solutionPrev->at(jNext) -( 2*k2 - k1)/h);
             }
 
-            k2 = k*flux_difference;
+            k3 = k*flux_difference;
 
             solution->at(j) = solutionPrev->at(j) - 1./(6.*h)*(k1 + 4.*k2 + k3);
 

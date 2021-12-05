@@ -35,14 +35,14 @@ The 1-Dimensional Burgers' equation:
 
 will be solved using the following configuration: 
 ------------------------------------------------------------------------------------------------
-|   NUMBER OF VOLUMES          :            1700                                               |
-|   VOLUME DIMENSION           :            0.0011771630370806356                              |
-|   COURANT NUMBER             :            0.4                                                |
-|   FINAL TIME                 :            1.0                                                |
+|   NUMBER OF VOLUMES          :            50                                                 |
+|   VOLUME DIMENSION           :            0.04081632653061224                                |
+|   COURANT NUMBER             :            0.1                                                |
+|   FINAL TIME                 :            0.5                                                |
 |   TIME INTEGRATION           :            RK_3                                               |
 |   RIEMANN SOLVER             :            GODUNOV                                            |
 |   SECOND ORDER CORRECTION    :            TRUE                                               |
-|   RECONSTRUCTION TYPE        :            MUSCL_PARABOLIC                                    |
-|   FLUX/SLOPE LIMITER         :            VAN_ALBADA                                         |
+|   RECONSTRUCTION TYPE        :            MUSCL_LINEAR                                       |
+|   FLUX/SLOPE LIMITER         :            VAN_LEER                                           |
 ------------------------------------------------------------------------------------------------
 

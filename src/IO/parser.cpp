@@ -36,9 +36,9 @@ void PDE::IO::parser::parse() {
                 if (split_lines[1]=="EXPLICIT") {
                     data.method = &PDE::SOLVER::explicit_solver;
                 } else if (split_lines[1]=="RK_2") {
-                    data.method = &PDE::SOLVER::rk_solver;
+                    data.method = &PDE::SOLVER::rk_2;
                 } else if (split_lines[1]=="RK_3") {
-                    data.method = &PDE::SOLVER::rk_4;
+                    data.method = &PDE::SOLVER::rk_3;
                 } else {
                     std::cout << "UNKNOWN METHOD. ABORTING EXECUTION...";
                     throw 1;
@@ -89,6 +89,7 @@ void PDE::IO::parser::parse() {
                     std::cout << "UNKNOWN RECONSTRUCTION METHOD, ABORTING EXECUTION...";
                     throw 1;
                 }
+                
             } else if(split_lines[0] == "SECOND_ORDER_CORRECTION"){
                 data.SEC_ORD_CORR = (split_lines[1] == "TRUE")?true:false;
             }else if (split_lines[0] == "FILENAME") {
