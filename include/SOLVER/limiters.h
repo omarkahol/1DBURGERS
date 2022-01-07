@@ -4,7 +4,11 @@
 #include <cmath>
 
 namespace PDE::SOLVER {
-    double vanAlabada(double, double, double);
+    double vanAlbada(double, double, double);
+    double vanLeer(double, double, double);
+    double superbee(double, double, double);
+    double minmod(double, double, double);
+    
 }
 
 

@@ -6,10 +6,11 @@ g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/muscl.cpp  -o src/SOLVER/muscl.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/riemann.cpp  -o src/SOLVER/riemann.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/SOLVER/solver.cpp  -o src/SOLVER/solver.o
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/Simulation_parser.cpp  -o src/IO/Simulation_parser.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/log.cpp  -o src/IO/log.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/parser.cpp  -o src/IO/parser.o
 g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -c src/IO/writer.cpp  -o src/IO/writer.o
-g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -o output/main src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/log.o src/IO/parser.o src/IO/writer.o  -Llib 
+g++ -std=c++17 -Wall -Wextra -g -Iinclude -Iinclude/SOLVER -Iinclude/IO  -o output/main src/main.o src/SOLVER/limiters.o src/SOLVER/muscl.o src/SOLVER/riemann.o src/SOLVER/solver.o src/IO/Simulation_parser.o src/IO/log.o src/IO/parser.o src/IO/writer.o  -Llib 
 echo Executing 'all' complete!
 make: Leaving directory '/home/cosimo/Documents/CFD2021/PROJECT/1DBURGERS'
  
