@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from numpy import genfromtxt
 from matplotlib.animation import FuncAnimation
 
-data = genfromtxt('Results/Caso_1/solution_RK_3_GODUNOV_VAN_LEER_TRUE_MUSCL_LINEAR_500.csv',delimiter=',')
+#data = genfromtxt('Results/Caso_1/solution_RK_3_GODUNOV_VAN_LEER_TRUE_MUSCL_LINEAR_500.csv',delimiter=',')
+data = genfromtxt('solution.csv',delimiter=',')
 time = data[:, -1]
 u = data[:,0:-1]
 TimeIdx = -2
@@ -15,8 +16,8 @@ print(len(time))
 
 # Setting the figure
 fig = plt.figure(fig_num)
-ax = fig.add_subplot(111, xlim=(0.74,0.78))
-ax.set_title('RK3 method - Solution at time: t = {:f}'.format(time[TimeIdx]), fontsize=20) 
+ax = fig.add_subplot(111, xlim=(-1,1))
+ax.set_title('Solution at time: t = {:f}'.format(time[TimeIdx]), fontsize=20) 
 ax.set_xlabel('x', fontsize=20)
 ax.set_ylabel('u(x,t)', fontsize=20)
 
